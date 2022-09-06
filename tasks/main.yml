@@ -1,10 +1,10 @@
 ---
 - name: Assert that ansible_pkg_mgr is defined
-  assert:
+  ansible.builtin.assert:
     that:
       - ansible_pkg_mgr is defined
       - ansible_pkg_mgr != ""
       - ansible_pkg_mgr != "unknown"
     quiet: true
 
-- include_tasks: "set-path-{{ ansible_pkg_mgr }}.yml"
+- ansible.builtin.include_tasks: "set-path-{{ ansible_pkg_mgr }}.yml"
