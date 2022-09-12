@@ -1,0 +1,19 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Try to add expected paths to the test file
+      ansible.builtin.lineinfile:
+        path: "/tmp/paths.txt"
+        line: "{{ item }}"
+      loop:
+        - "/usr/bin"  # ansible_pkg_mgr_bin
+        # ansible_pkg_mgr_path
+        - "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        - "/usr"  # ansible_pkg_mgr_prefix
+      register: test_path_lines
+
+    - name: Assert that all expected paths were already in the test file
+      ansible.builtin.assert:
+        that: item is not changed
+      loop: "{{ test_path_lines.results }}"
