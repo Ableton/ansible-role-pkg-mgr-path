@@ -7,4 +7,5 @@
       - ansible_pkg_mgr != "unknown"
     quiet: true
 
-- ansible.builtin.include_tasks: "set-path-{{ ansible_pkg_mgr }}.yml"
+- name: Include tasks for the given package manager
+  ansible.builtin.include_tasks: "set-path-{{ ansible_pkg_mgr }}.yml"
