@@ -5,9 +5,10 @@
     - ableton.pkg_mgr_path
   tasks:
     - name: Write variables to file
-      copy:
+      ansible.builtin.copy:
         content: |
           {{ ansible_pkg_mgr_bin }}
           {{ ansible_pkg_mgr_path }}
           {{ ansible_pkg_mgr_prefix }}
         dest: "/tmp/paths.txt"
+        mode: "0644"
