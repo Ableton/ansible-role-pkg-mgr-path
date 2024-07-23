@@ -1,0 +1,15 @@
+---
+- name: Set ansible_pkg_mgr_prefix fact
+  ansible.builtin.set_fact:
+    ansible_pkg_mgr_prefix: "C:\\ProgramData\\scoop"
+
+- name: Set ansible_pkg_mgr_bin fact
+  ansible.builtin.set_fact:
+    ansible_pkg_mgr_bin: "C:\\ProgramData\\scoop\\shims"
+
+# ansible_env.PATH is not defined on Windows, since Windows doesn't use the Unix-based
+# Ansible tasks. We define it to be Chocolatey's default installation path, see:
+# https://docs.chocolatey.org/en-us/faqs#where-does-chocolatey-install-by-default
+- name: Set ansible_pkg_mgr_path fact
+  ansible.builtin.set_fact:
+    ansible_pkg_mgr_path: "C:\\ProgramData\\scoop"
