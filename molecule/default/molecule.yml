@@ -4,8 +4,10 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance
+  - name: ansible-role-pkg-mgr-path-focal
     image: ubuntu:20.04
+  - name: ansible-role-pkg-mgr-path-noble
+    image: ubuntu:24.04
 provisioner:
   name: ansible
   log: true
